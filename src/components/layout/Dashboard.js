@@ -1,17 +1,13 @@
 import React from 'react';
 
-import BudgetAnalysis from '../BudgetAnalysis';
-import AddCategory from '../category/AddCategory';
+import DashHeader from './DashHeader';
 import Categories from '../category/Categories';
 
 const Dashboard = () => {
     return (
         <div>
-            <div className="container">
-                <BudgetAnalysis />
-            </div>
+            <DashHeader />
             <Categories />
-            <AddCategory />
         </div>
     );
 };

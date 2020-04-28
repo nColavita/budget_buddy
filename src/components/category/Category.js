@@ -22,7 +22,7 @@ class Category extends Component {
                         <p>Spend: ${parseFloat(categorySpend).toFixed(2)}</p>
                     </div>
                     <div className="col-md-3">
-                        <button className="btn btn-success btn-sm mr-3">
+                        <button className="btn btn-info btn-sm mr-3">
                             View
                         </button>
                         <button
