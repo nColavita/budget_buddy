@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class Category extends Component {
+    onDeleteClick = () => {
+        this.props.deleteClickHandler();
+    };
+
     render() {
         const {
             categoryName,
@@ -21,7 +25,10 @@ class Category extends Component {
                         <button className="btn btn-success btn-sm mr-3">
                             View
                         </button>
-                        <button className="btn btn-danger btn-sm">
+                        <button
+                            onClick={this.onDeleteClick}
+                            className="btn btn-danger btn-sm"
+                        >
                             {' '}
                             Delete{' '}
                         </button>

@@ -49,12 +49,29 @@ class Categories extends Component {
         ],
     };
 
+    deleteCategory = (categoryID, e) => {
+        const { categories } = this.state;
+
+        const newCategories = categories.filter(
+            (category) => category.categoryID !== categoryID
+        );
+
+        this.setState({ categories: newCategories });
+    };
+
     render() {
         const { categories } = this.state;
         return (
             <React.Fragment>
                 {categories.map((category) => (
-                    <Category key={category.categoryID} category={category} />
+                    <Category
+                        key={category.categoryID}
+                        category={category}
+                        deleteClickHandler={this.deleteCategory.bind(
+                            this,
+                            category.categoryID
+                        )}
+                    />
                 ))}
             </React.Fragment>
         );
