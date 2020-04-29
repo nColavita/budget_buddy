@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Category extends Component {
     onDeleteClick = () => {
         this.props.deleteClickHandler();
     };
 
+    onViewClick = (categoryID, e) => {
+        console.log(categoryID);
+    };
+
     render() {
         const {
+            categoryID,
             categoryName,
             categoryBudget,
             categorySpend,
@@ -22,9 +28,12 @@ class Category extends Component {
                         <p>Spend: ${parseFloat(categorySpend).toFixed(2)}</p>
                     </div>
                     <div className="col-md-3">
-                        <button className="btn btn-info btn-sm mr-3">
+                        <Link
+                            to={`category/view/${categoryID}`}
+                            className="btn btn-info btn-sm mr-3"
+                        >
                             View
-                        </button>
+                        </Link>
                         <button
                             onClick={this.onDeleteClick}
                             className="btn btn-danger btn-sm"

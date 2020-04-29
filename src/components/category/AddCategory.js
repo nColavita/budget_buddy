@@ -15,6 +15,7 @@ class AddCategory extends Component {
 
         const { categoryName, categoryBudget } = this.state;
 
+        // Build new category object
         const newCategory = {
             id: uuid(),
             categoryName,
@@ -29,6 +30,9 @@ class AddCategory extends Component {
             categoryBudget: '',
             categoryItems: [],
         });
+
+        // Redirects after successful submission
+        this.props.history.push('/');
     };
 
     render() {
