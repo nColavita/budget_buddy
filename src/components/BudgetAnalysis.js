@@ -2,21 +2,25 @@ import React, { Component } from 'react';
 import { Consumer } from '../context';
 
 class BudgetAnalysis extends Component {
+    analysis = (categories) => {
+        let total = 0;
+        categories.map((category) => {
+            return (total += parseInt(category.categoryBudget));
+        });
+        return total.toFixed(2);
+    };
+
     render() {
         return (
             <Consumer>
                 {(value) => {
                     const { categories } = value;
-                    let total = 0;
-                    categories.map((category) => {
-                        total += parseInt(category.categoryBudget);
-                    });
                     return (
                         <div>
                             <p>
-                                Budget Analysis: $
+                                Budget Analysis:{' '}
                                 <span className="font-weight-bold">
-                                    {total.toFixed(2)}
+                                    ${this.analysis(categories)}
                                 </span>
                             </p>
                         </div>

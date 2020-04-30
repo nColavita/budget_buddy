@@ -24,16 +24,16 @@ class Category extends Component {
                     const { dispatch } = value;
                     return (
                         <div className="card card-body mb-3">
-                            <div className="row">
+                            <div className="row d-flex align-items-center">
                                 <div className="col-md-6">
                                     <h4>{categoryName}</h4>
                                 </div>
-                                <div className="col-md-3">
-                                    <p>
+                                <div className="col-md-3 d-flex align-items-center justify-content-left">
+                                    <p style={{ margin: 0 }}>
                                         Budget: $
                                         {parseFloat(categoryBudget).toFixed(2)}
                                     </p>
-                                    <p>
+                                    <p style={{ margin: 0 }}>
                                         Spend: $
                                         {parseFloat(categorySpend).toFixed(2)}
                                     </p>

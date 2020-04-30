@@ -19,7 +19,7 @@ class AddCategory extends Component {
 
         // Build new category object
         const newCategory = {
-            id: uuid(),
+            categoryID: uuid(),
             categoryName: categoryName,
             categoryBudget: categoryBudget,
             categorySpend: 0,
