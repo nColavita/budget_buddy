@@ -12,14 +12,14 @@ class AddCategory extends Component {
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    onSubmit = (dispatch, e) => {
+    onSubmit = (dispatch, idCount, e) => {
         e.preventDefault();
 
         const { categoryName, categoryBudget } = this.state;
 
         // Build new category object
         const newCategory = {
-            categoryID: uuid(),
+            categoryID: (idCount += 1).toString(),
             categoryName: categoryName,
             categoryBudget: categoryBudget,
             categorySpend: 0,
@@ -44,7 +44,7 @@ class AddCategory extends Component {
         return (
             <Consumer>
                 {(value) => {
-                    const { dispatch } = value;
+                    const { dispatch, idCount } = value;
 
                     return (
                         <React.Fragment>
@@ -59,7 +59,8 @@ class AddCategory extends Component {
                                             <form
                                                 onSubmit={this.onSubmit.bind(
                                                     this,
-                                                    dispatch
+                                                    dispatch,
+                                                    idCount
                                                 )}
                                             >
                                                 <div className="form-group">

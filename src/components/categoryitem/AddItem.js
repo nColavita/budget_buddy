@@ -9,32 +9,39 @@ class AddItem extends Component {
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    onSubmit = (dispatch, e) => {
+    onSubmit = (dispatch, itemIDCount, categoryID, e) => {
         e.preventDefault();
 
-        const newItem = {
-            itemID: uuid(),
-            itemName: this.state.itemName,
-            itemBudget: this.state.itemBudget,
-            itemSpend: '0',
+        const payload = {
+            categoryID,
+            newItem: {
+                itemID: (itemIDCount += 1).toString(),
+                itemName: this.state.itemName,
+                itemBudget: this.state.itemBudget,
+                itemSpend: '0',
+            },
         };
 
-        dispatch({ type: 'ADD_ITEM', payload: newItem });
+        dispatch({ type: 'ADD_ITEM', payload: payload });
 
         // Clear State
         this.setState({
             itemName: '',
             itemBudget: '',
         });
-
-        // this.props.history.push('/');
     };
 
     render() {
+        const { matchedCategory, itemIDCount } = this.props;
         return (
             <div>
                 <form
-                    onSubmit={this.onSubmit.bind(this, this.props.dispatch)}
+                    onSubmit={this.onSubmit.bind(
+                        this,
+                        this.props.dispatch,
+                        itemIDCount,
+                        matchedCategory.categoryID
+                    )}
                     className="d-inline-block"
                 >
                     <div className="form-group d-inline-block">

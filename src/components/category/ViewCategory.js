@@ -9,7 +9,7 @@ class ViewCategory extends Component {
         return (
             <Consumer>
                 {(value) => {
-                    const { categories, dispatch } = value;
+                    const { categories, dispatch, itemIDCount } = value;
 
                     const categoryParam = this.props.match.params.categoryID;
                     const matchedCategory = categories.find(
@@ -17,7 +17,6 @@ class ViewCategory extends Component {
                     );
                     return (
                         <React.Fragment>
-                            {console.log(categories)}
                             <div className="row d-flex align-items-center justify-content-md-between">
                                 <div className="col-md-8">
                                     <h1>{matchedCategory.categoryName}</h1>
@@ -42,6 +41,8 @@ class ViewCategory extends Component {
                                 <AddItem
                                     matchedCategory={matchedCategory}
                                     dispatch={dispatch}
+                                    itemIDCount={itemIDCount}
+                                    history={this.props.history}
                                 />
                             </div>
                             <hr />

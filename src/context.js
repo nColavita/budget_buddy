@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 const Context = React.createContext();
 
@@ -17,17 +17,22 @@ const reducer = (state, action) => {
                 ...state,
                 categories: [action.payload, ...state.categories],
             };
-        case 'DELETE_ITEM':
-            return {
-                ...state,
-                categories: state.categories.categoryItems.filter(
-                    (item) => item.itemID !== action.payload
-                ),
-            };
         case 'ADD_ITEM':
             return {
                 ...state,
-                categories: [action.payload, ...state.categories.categoryItems],
+                // categories: [action.payload.newItem, ...state.categories.categoryItems],
+                categories: state.categories.map((category) => {
+                    if (category.categoryID === action.payload.categoryID) {
+                        return {
+                            ...category,
+                            categoryItems: category.categoryItems.concat(
+                                action.payload.newItem
+                            ),
+                        };
+                    } else {
+                        return category;
+                    }
+                }),
             };
         default:
             return state;
@@ -36,21 +41,23 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
     state = {
+        idCount: 2,
+        itemIDCount: 4,
         categories: [
             {
-                categoryID: uuid(),
+                categoryID: '1',
                 categoryName: 'Home',
                 categoryBudget: '1500',
                 categorySpend: '0',
                 categoryItems: [
                     {
-                        itemID: uuid(),
+                        itemID: '1',
                         itemName: 'Electric',
                         itemBudget: '75',
                         itemSpend: '0',
                     },
                     {
-                        itemID: uuid(),
+                        itemID: '2',
                         itemName: 'Gas',
                         itemBudget: '50',
                         itemSpend: '0',
@@ -58,19 +65,19 @@ export class Provider extends Component {
                 ],
             },
             {
-                categoryID: uuid(),
+                categoryID: '2',
                 categoryName: 'Entertainment',
                 categoryBudget: '500',
                 categorySpend: '0',
                 categoryItems: [
                     {
-                        itemID: uuid(),
+                        itemID: '3',
                         itemName: 'Dining',
                         itemBudget: '250',
                         itemSpend: '0',
                     },
                     {
-                        itemID: uuid(),
+                        itemID: '4',
                         itemName: 'Movies',
                         itemBudget: '250',
                         itemSpend: '0',
