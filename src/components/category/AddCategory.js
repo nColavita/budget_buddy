@@ -63,10 +63,8 @@ class AddCategory extends Component {
                                                 )}
                                             >
                                                 <div className="form-group">
-                                                    <label htmlFor="categoryName">
-                                                        Category Name
-                                                    </label>
                                                     <input
+                                                        required
                                                         className="form-control form-control-lg"
                                                         type="text"
                                                         name="categoryName"
@@ -80,6 +78,7 @@ class AddCategory extends Component {
                                                         {categoryName} Budget
                                                     </label>
                                                     <input
+                                                        required
                                                         className="form-control form-control-lg"
                                                         type="number"
                                                         name="categoryBudget"

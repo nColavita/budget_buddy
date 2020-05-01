@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 import { Consumer } from '../../context';
 
 import CategoryItems from '../categoryitem/CategoryItems';
+import AddItem from '../categoryitem/AddItem';
 
 class ViewCategory extends Component {
     render() {
-        let categoryParam = this.props.match.params.categoryID;
         return (
             <Consumer>
                 {(value) => {
-                    const { categories } = value;
-                    let matchedCategory = categories.find(
+                    const { categories, dispatch } = value;
+
+                    const categoryParam = this.props.match.params.categoryID;
+                    const matchedCategory = categories.find(
                         (category) => category.categoryID === categoryParam
                     );
-
                     return (
                         <React.Fragment>
-                            {console.log(matchedCategory)}
+                            {console.log(categories)}
                             <div className="row d-flex align-items-center justify-content-md-between">
                                 <div className="col-md-8">
                                     <h1>{matchedCategory.categoryName}</h1>
@@ -36,6 +37,14 @@ class ViewCategory extends Component {
                                     </h6>
                                 </div>
                             </div>
+                            <hr />
+                            <div className="row">
+                                <AddItem
+                                    matchedCategory={matchedCategory}
+                                    dispatch={dispatch}
+                                />
+                            </div>
+                            <hr />
                             <div className="row">
                                 <CategoryItems
                                     matchedCategory={matchedCategory}

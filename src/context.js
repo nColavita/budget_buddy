@@ -12,13 +12,25 @@ const reducer = (state, action) => {
                     (category) => category.categoryID !== action.payload
                 ),
             };
-        default:
-            return state;
         case 'ADD_CATEGORY':
             return {
                 ...state,
                 categories: [action.payload, ...state.categories],
             };
+        case 'DELETE_ITEM':
+            return {
+                ...state,
+                categories: state.categories.categoryItems.filter(
+                    (item) => item.itemID !== action.payload
+                ),
+            };
+        case 'ADD_ITEM':
+            return {
+                ...state,
+                categories: [action.payload, ...state.categories.categoryItems],
+            };
+        default:
+            return state;
     }
 };
 
@@ -27,8 +39,8 @@ export class Provider extends Component {
         categories: [
             {
                 categoryID: uuid(),
-                categoryName: 'Bills',
-                categoryBudget: '5000',
+                categoryName: 'Home',
+                categoryBudget: '1500',
                 categorySpend: '0',
                 categoryItems: [
                     {

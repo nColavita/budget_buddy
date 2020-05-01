@@ -1,3 +1,10 @@
 body {
     font-family: 'Montserrat', sans-serif;
 }
+
+input[type='text'],
+input[type='number'] {
+    border: 0;
+    border-bottom: solid #2fd0ec 1px;
+    border-radius: 0;
+}
