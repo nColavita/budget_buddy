@@ -5,13 +5,28 @@ import CategoryItems from '../categoryitem/CategoryItems';
 import AddItem from '../categoryitem/AddItem';
 
 class ViewCategory extends Component {
+    itemAnalysis = (items, type) => {
+        let total = 0;
+
+        items.map((item) => {
+            if (type === 'budget') {
+                total += parseInt(item.itemBudget);
+            }
+            if (type === 'spend') {
+                total += parseInt(item.itemSpend);
+            }
+        });
+        return total.toFixed(2);
+    };
+
     render() {
+        const { match, history } = this.props;
         return (
             <Consumer>
                 {(value) => {
                     const { categories, dispatch, itemIDCount } = value;
 
-                    const categoryParam = this.props.match.params.categoryID;
+                    const categoryParam = match.params.categoryID;
                     const matchedCategory = categories.find(
                         (category) => category.categoryID === categoryParam
                     );
@@ -24,29 +39,29 @@ class ViewCategory extends Component {
                                 <div className="col-md-4 d-flex align-items-center justify-content-end">
                                     <h6 className="mr-3">
                                         Budget: $
-                                        {parseInt(
-                                            matchedCategory.categoryBudget
-                                        ).toFixed(2)}
+                                        {this.itemAnalysis(
+                                            matchedCategory.categoryItems,
+                                            'budget'
+                                        )}
                                     </h6>
                                     <h6>
                                         Spend: $
-                                        {parseInt(
-                                            matchedCategory.categorySpend
-                                        ).toFixed(2)}
+                                        {this.itemAnalysis(
+                                            matchedCategory.categoryItems,
+                                            'spend'
+                                        )}
                                     </h6>
                                 </div>
                             </div>
-                            <hr />
-                            <div className="row">
+                            <div className="row mt-3">
                                 <AddItem
                                     matchedCategory={matchedCategory}
                                     dispatch={dispatch}
                                     itemIDCount={itemIDCount}
-                                    history={this.props.history}
+                                    history={history}
                                 />
                             </div>
-                            <hr />
-                            <div className="row">
+                            <div className="row mt-3">
                                 <CategoryItems
                                     matchedCategory={matchedCategory}
                                 />

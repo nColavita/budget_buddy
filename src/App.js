@@ -33,7 +33,7 @@ function App() {
                             />
                             <Route
                                 exact
-                                path="/category/view/:categoryID"
+                                path="/category/:categoryID"
                                 component={ViewCategory}
                             />
                             <Route component={NotFound} />

@@ -40,7 +40,7 @@ class AddCategory extends Component {
     };
 
     render() {
-        const { categoryName, categoryBudget, categoryItems } = this.state;
+        const { categoryName, categoryBudget } = this.state;
         return (
             <Consumer>
                 {(value) => {

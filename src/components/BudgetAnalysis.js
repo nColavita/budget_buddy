@@ -5,7 +5,7 @@ class BudgetAnalysis extends Component {
     analysis = (categories) => {
         let total = 0;
         categories.map((category) => {
-            return (total += parseInt(category.categoryBudget));
+            total += parseInt(category.categoryBudget);
         });
         return total.toFixed(2);
     };

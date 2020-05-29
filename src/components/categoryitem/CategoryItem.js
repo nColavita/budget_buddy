@@ -5,8 +5,8 @@ class CategoryItem extends Component {
         return (
             <tr>
                 <td>{this.props.name}</td>
-                <td>{this.props.budget}</td>
-                <td>{this.props.spend}</td>
+                <td>${this.props.budget}</td>
+                <td>${this.props.spend}</td>
                 <td>
                     <i
                         className="fas fa-edit"

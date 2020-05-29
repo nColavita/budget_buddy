@@ -47,14 +47,14 @@ export class Provider extends Component {
             {
                 categoryID: '1',
                 categoryName: 'Home',
-                categoryBudget: '1500',
+                categoryBudget: '0',
                 categorySpend: '0',
                 categoryItems: [
                     {
                         itemID: '1',
                         itemName: 'Electric',
                         itemBudget: '75',
-                        itemSpend: '0',
+                        itemSpend: '50',
                     },
                     {
                         itemID: '2',
@@ -67,20 +67,20 @@ export class Provider extends Component {
             {
                 categoryID: '2',
                 categoryName: 'Entertainment',
-                categoryBudget: '500',
+                categoryBudget: '0',
                 categorySpend: '0',
                 categoryItems: [
                     {
                         itemID: '3',
                         itemName: 'Dining',
                         itemBudget: '250',
-                        itemSpend: '0',
+                        itemSpend: '175',
                     },
                     {
                         itemID: '4',
                         itemName: 'Movies',
                         itemBudget: '250',
-                        itemSpend: '0',
+                        itemSpend: '300',
                     },
                 ],
             },

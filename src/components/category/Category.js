@@ -11,6 +11,21 @@ class Category extends Component {
         console.log(categoryID);
     };
 
+    itemAnalysis = (items, type) => {
+        let total = 0;
+
+        items.map((item) => {
+            if (type === 'budget') {
+                total += parseInt(item.itemBudget);
+            }
+            if (type === 'spend') {
+                total += parseInt(item.itemSpend);
+            }
+        });
+
+        return total.toFixed(2);
+    };
+
     render() {
         const {
             categoryID,
@@ -29,18 +44,30 @@ class Category extends Component {
                                     <h4>{categoryName}</h4>
                                 </div>
                                 <div className="col-md-3 d-flex align-items-center justify-content-left">
-                                    <p style={{ margin: 0 }}>
-                                        Budget: $
-                                        {parseFloat(categoryBudget).toFixed(2)}
-                                    </p>
-                                    <p style={{ margin: 0 }}>
-                                        Spend: $
-                                        {parseFloat(categorySpend).toFixed(2)}
-                                    </p>
+                                    <div className="mr-3">
+                                        <p style={style.pstyle}>
+                                            Budget: $
+                                            {this.itemAnalysis(
+                                                this.props.category
+                                                    .categoryItems,
+                                                'budget'
+                                            )}
+                                        </p>
+                                    </div>
+                                    <div className="mr-3">
+                                        <p style={style.pstyle}>
+                                            Spend: $
+                                            {this.itemAnalysis(
+                                                this.props.category
+                                                    .categoryItems,
+                                                'spend'
+                                            )}
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className="col-md-3">
                                     <Link
-                                        to={`category/view/${categoryID}`}
+                                        to={`category/${categoryID}`}
                                         className="btn btn-info btn-sm mr-3"
                                     >
                                         View
@@ -65,5 +92,12 @@ class Category extends Component {
         );
     }
 }
+
+const style = {
+    pstyle: {
+        margin: '0',
+        fontSize: '0.85em',
+    },
+};
 
 export default Category;

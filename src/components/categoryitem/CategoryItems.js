@@ -9,10 +9,10 @@ class CategoryItems extends Component {
                 <table className="table">
                     <tbody>
                         <tr>
-                            <th>Item</th>
+                            <th></th>
                             <th>Budget</th>
                             <th>Spend</th>
-                            <th>Edit/Delete</th>
+                            <th></th>
                         </tr>
                         {this.props.matchedCategory.categoryItems.map(
                             (categoryItem) => (
